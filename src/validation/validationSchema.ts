@@ -21,3 +21,21 @@ export const loginInputSchema = object({
     password: string({ required_error: "password is required !" }),
   }),
 });
+
+export const addProductInputSchema = object({
+  body: object({
+    title: string({ required_error: "title is required !" }),
+    description: string({ required_error: "description is required !" }),
+    brand: string({ required_error: "brand is required !" }),
+    category: string({ required_error: "category is required !" }),
+    thumbnail: string({ required_error: "thumbnail is required !" }),
+    price: number({ required_error: "price is required !" }),
+    stock: number({ required_error: "stock is required !" }),
+  }),
+});
+export const addToCartInputSchema = object({
+  body: object({
+    productId: string({ required_error: "productId is required !" }),
+    quantity: number({ required_error: "quantity is required !" }),
+  }),
+});
