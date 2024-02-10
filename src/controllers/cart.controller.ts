@@ -31,3 +31,19 @@ export const getMyCart: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+export const removeProductFromCart: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = res.locals.userId;
+    const productId = req.params.id;
+
+    const cartItem = await cartModel.findOneAndDelete({ userId, productId });
+    if (!cartItem)
+      return res
+        .status(404)
+        .json({ success: false, message: "Cart item not found." });
+
+    res.status(200).json({ success: true, message: "Cart item deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
