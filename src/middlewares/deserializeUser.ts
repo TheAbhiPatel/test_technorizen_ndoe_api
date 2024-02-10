@@ -8,9 +8,9 @@ export const deserializeUser: RequestHandler = async (req, res, next) => {
     if (authHeader) {
       const [Bearer, token] = authHeader;
       if (Bearer === "Bearer") {
-        const userInfo = jwt.verify(token, JWT_SECRET!) as { userId: string };
+        const userInfo = jwt.verify(token, JWT_SECRET!) as { id: string };
         if (userInfo) {
-          res.locals.userId = userInfo.userId;
+          res.locals.userId = userInfo.id;
         }
       }
     }
